@@ -1,13 +1,15 @@
-import utf8 from "./bower_components/utf-8/utf-8";
+import PercentEncoder from "./bower_components/percent-encoder/percent-encoder";
 
-const Path = Object.freeze(Object.assign(function(desc) {
+const pEncoder = Symbol("encoder"),
+    decode = PercentEncoder.decode.bind(PercentEncoder),
+    Path = Object.freeze(Object.assign(function(desc) {
             Object.assign(this, desc);
         }, {
             "defaultSeparator": "/",
             "parse": function(path, separator = Path.defaultSeparator) {
-                const directories = path.split(separator);
+                const directories = path.split(separator).map(decode);
+                
                 var file;
-
                 if(!path.endsWith(separator)) {
                     file = directories.pop();
                 }
@@ -18,7 +20,10 @@ const Path = Object.freeze(Object.assign(function(desc) {
                     "separator": separator
                 });
                 path.normalise();
-                
+
+                const encoder = new PercentEncoder([separator]);
+                this[pEncode] = encoder.encode.bind(encoder);
+
                 return path;
             },
             "normalise": function(path, separator = Path.defaultSeparator) {
@@ -33,9 +38,9 @@ Object.assign(Path.prototype, {
     "toString": function() {
         var parts = this.directories.slice();
         if(this.file) {
-            parts.push(this.file;
+            parts.push(this.file);
         }
 
-        return parts.join(this.separator) + this.separator;
+        return parts.map(this[pEncode]).join(this.separator);
     }
 });
