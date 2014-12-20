@@ -1,6 +1,6 @@
 {
   "name": "path",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "path\r ====",
   "main": "path.es6",
   "scripts": {
