@@ -1,4 +1,4 @@
-import PercentEncoder from "./bower_components/percent-encoder/percent-encoder";
+import PercentEncoder from "./bower_components/percent-encoder/percent-encoder.es6";
 
 const pEncoder = Symbol("encoder"),
     decode = PercentEncoder.decode.bind(PercentEncoder),
@@ -8,7 +8,7 @@ const pEncoder = Symbol("encoder"),
             "defaultSeparator": "/",
             "parse": function(path, separator = Path.defaultSeparator) {
                 const directories = path.split(separator).map(decode);
-                
+
                 var file;
                 if(!path.endsWith(separator)) {
                     file = directories.pop();
