@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ileri/path/issues"
   },
-  "homepage": "https://github.com/ileri/path"
+  "homepage": "https://github.com/ileri/path",
+  "dependencies": {
+    "percent-encoder": "^0.3.0"
+  }
 }

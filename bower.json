@@ -16,8 +16,5 @@
     "bower_components",
     "test",
     "tests"
-  ],
-  "dependencies": {
-    "percent-encoder": "~0.2.0"
-  }
+  ]
 }

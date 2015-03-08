@@ -1,4 +1,4 @@
-import PercentEncoder from "./bower_components/percent-encoder/percent-encoder.es6";
+import PercentEncoder from "percent-encoder";
 
 const pEncoder = Symbol("encoder"),
     decode = PercentEncoder.decode.bind(PercentEncoder),
