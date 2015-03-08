@@ -4,13 +4,18 @@ const pEncoder = Symbol("encoder"),
     decode = PercentEncoder.decode.bind(PercentEncoder);
 
 class Path {
-    constructor(desc) {
-        Object.assign(this, desc);
+    constructor(desc, encoder = undefined) {
+        Object.assign(this, Object.assign({
+            directories: [],
+            file: undefined,
+            separator: Path.defaultSeparator
+        }, desc));
+        this[pEncoder] = encoder || new PercentEncoder([this.separator]);
     }
 
-    normalisen() {
-            this.directories = this.directories.filter(Boolean);
-        }
+    normalise() {
+        this.directories = this.directories.filter(Boolean);
+    }
 
     toString() {
         var parts = this.directories.slice();
@@ -18,34 +23,31 @@ class Path {
             parts.push(this.file);
         }
 
-        return parts.map(this[pEncode]).join(this.separator);
+        return parts.map(this[pEncoder]).join(this.separator);
     }
 }
 
 Object.assign(Path, {
     defaultSeparator: "/",
-    parse(path, separator = Path.defaultSeparator) {
-        const directories = path.split(separator).map(decode);
+    parse(pathStr, separator = Path.defaultSeparator, encoder = undefined) {
+        const directories = pathStr.split(separator).map(decode);
 
-        var file;
-        if(!path.endsWith(separator)) {
+        let file;
+        if(!pathStr.endsWith(separator)) {
             file = directories.pop();
         }
 
-        const path = new Path({
-            "directories": directories,
-            "file": file,
-            "separator": separator
-        });
+        const path = new this({
+            directories: directories,
+            file: file,
+            separator: separator
+        }, separator, encoder);
+
         path.normalise();
-
-        const encoder = new PercentEncoder([separator]);
-        this[pEncode] = encoder.encode.bind(encoder);
-
         return path;
     },
-    normalise(path, separator = Path.defaultSeparator) {
-        return path.replace(new RegExp(`(?:${separator})+`, "g"), separator);
+    normalise(pathStr, separator = Path.defaultSeparator) {
+        return pathStr.replace(new RegExp(`(?:${separator})+`, "g"), separator);
     }
 });
 
