@@ -5,7 +5,7 @@
   "authors": [
     "Malte-Maurice Dreyer <dreyer.maltem@gmail.com>"
   ],
-  "main": "path.es6",
+  "main": "path.js",
   "moduleType": [
     "es6"
   ],

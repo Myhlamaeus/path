@@ -2,7 +2,7 @@
   "name": "path",
   "version": "0.2.0",
   "description": "path\r ====",
-  "main": "path.es6",
+  "main": "path.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
