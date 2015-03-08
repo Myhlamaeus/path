@@ -1,22 +1,22 @@
 {
   "name": "path",
-  "version": "0.2.0",
   "description": "path\r ====",
-  "main": "path.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "0.2.0",
+  "author": "Malte-Maurice Dreyer <dreyer.maltem@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/ileri/path/issues"
   },
+  "dependencies": {
+    "percent-encoder": "^0.3.0"
+  },
+  "homepage": "https://github.com/ileri/path",
+  "license": "GPL-3.0",
+  "main": "path.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/ileri/path.git"
   },
-  "author": "Malte-Maurice Dreyer <dreyer.maltem@gmail.com>",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/ileri/path/issues"
-  },
-  "homepage": "https://github.com/ileri/path",
-  "dependencies": {
-    "percent-encoder": "^0.3.0"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
